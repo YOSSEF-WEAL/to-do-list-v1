@@ -130,4 +130,7 @@ body {
     .container {
         width: 99%;
     }
+        .form .input {
+        font-size: small;
+    }
 }
