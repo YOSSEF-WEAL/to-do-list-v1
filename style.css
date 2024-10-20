@@ -93,8 +93,9 @@ body {
 }
 
 .tasks .task.done {
-    opacity: 0.5;
-    filter: blur(2px);
+    /* opacity: 0.5;
+    filter: blur(2px); */
+    background: #03ba5b85;
 }
 
 
