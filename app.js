@@ -85,7 +85,7 @@ function addeElementsToPageFrom(arrayOfTasks)
         btnDon.addEventListener('click', function ()
         {
             const taskElement = this.closest('.task');
-            taskElement.classList.add('done');
+              taskElement.classList.toggle('done');
         })
 
 
