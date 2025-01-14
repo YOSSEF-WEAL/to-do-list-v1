@@ -6,7 +6,8 @@ let submit = document.querySelector(".add");
 let DeletAll = document.querySelector(".DeleetAll");
 // Call input div tasks
 let taskcDiv = document.querySelector(".tasks");
-
+// // btn done the task
+// const btnDon = document.querySelector('.done');
 // Empty Array To Store The Tacks
 let arrayOfTasks = [];
 
@@ -29,27 +30,6 @@ submit.onclick = function ()
     }
 };
 
-// Click On task Element
-taskcDiv.addEventListener("click", (e) =>
-{
-    // Delete Button
-    if (e.target.classList.contains("del"))
-    {
-        // remove task from local storege
-        deleteTaskWith(e.target.parentElement.getAttribute("data-id"));
-        // Remov Elemnt From page
-        e.target.parentElement.remove();
-    }
-    // Task Element
-    if (e.target.classList.contains("task"))
-    {
-        // Toggle completed for the task
-        toggleStartasWith(e.target.getAttribute("data-id"));
-        // Toggel Done class
-        e.target.classList.toggle("done");
-    }
-});
-
 function addTaskToArray(taskText)
 {
     // Tack Data
@@ -71,30 +51,52 @@ function addeElementsToPageFrom(arrayOfTasks)
     // Empty Tasks Div
     taskcDiv.innerHTML = "";
     // Looping on arrayOfTasks
-    arrayOfTasks.forEach((task) =>
+    arrayOfTasks.forEach((task, id) =>
     {
-        // Create min Div
-        let div = document.createElement("div");
-        div.className = "task";
-        // Check if task id done
-        if (task.completed)
+        taskcDiv.insertAdjacentHTML('afterbegin', `
+            <div class="task taskId-${id + 1}" data-id="${task.id}">
+                <p class="textOfTask">${task.titel}</p>
+                <div class="action d-inline-flex gap-1 align-items-center">
+                    <span class="done"><i class="fa-solid fa-check"></i></span>
+                    <span class="del"><i class="fa-solid fa-minus"></i></span>
+                </div>
+            </div>
+        `);
+
+        // Get the last added task and its delete button
+        const SpanDel = taskcDiv.firstElementChild.querySelector('.del');
+
+        // Add event listener to the delete button
+        SpanDel.addEventListener('click', function ()
         {
-            div.className = "task done";
-        }
-        div.setAttribute("data-id", task.id);
-        div.appendChild(document.createTextNode(task.titel));
-        // Create Delete Button
-        let span = document.createElement("span");
-        span.className = "del";
-        span.appendChild(document.createTextNode("Delete"));
-        // Append Button To Main Div
-        div.appendChild(span);
-        // Add Task Div To Tasks Container
-        taskcDiv.appendChild(div);
+            // Get the task element and its data-id
+            const taskElement = this.closest('.task');
+            const taskId = parseInt(taskElement.getAttribute('data-id'));
+
+            // Remove the task from the DOM
+            taskElement.remove();
+
+            // Remove the task from arrayOfTasks and localStorage
+            deleteTaskWith(taskId);
+        });
+
+        //     // btn done the task
+        const btnDon = document.querySelector('.done');
+        btnDon.addEventListener('click', function ()
+        {
+            const taskElement = this.closest('.task');
+            taskElement.classList.add('done');
+        })
+
+
     });
 }
 
-
+function deleteTaskWith(taskId)
+{
+    arrayOfTasks = arrayOfTasks.filter((task) => task.id !== taskId);
+    addDataToLoclStorageFrom(arrayOfTasks);
+}
 
 function addDataToLoclStorageFrom(arrayOfTasks)
 {
@@ -106,14 +108,9 @@ function getDataFromLocalStora()
     let data = window.localStorage.getItem("tasks");
     if (data)
     {
-        let tasks = JSON.parse(data);
-        addeElementsToPageFrom(tasks);
+        arrayOfTasks = JSON.parse(data);
+        addeElementsToPageFrom(arrayOfTasks);
     }
-}
-function deleteTaskWith(taskId)
-{
-    arrayOfTasks = arrayOfTasks.filter((task) => task.id != taskId);
-    addDataToLoclStorageFrom(arrayOfTasks);
 }
 
 function toggleStartasWith(taskId)
@@ -122,14 +119,14 @@ function toggleStartasWith(taskId)
     {
         if (arrayOfTasks[i].id == taskId)
         {
-            arrayOfTasks[i].completed == false
-                ? (arrayOfTasks[i].completed = true)
-                : arrayOfTasks[i].completed == false;
+            arrayOfTasks[i].completed = !arrayOfTasks[i].completed;
             addDataToLoclStorageFrom(arrayOfTasks);
         }
     }
 }
 
+
+document.addEventListener('DOMContentLoaded', getDataFromLocalStora);
 
 
 DeletAll.onclick = function ()
