@@ -1,144 +1,159 @@
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap");
 
 * {
-    font-family: "Tajawal", sans-serif;
+  font-family: "Tajawal", sans-serif;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    /* background-color: #EAEAEA; */
-    background: url(./imgs/bg.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+  font-family: Arial, Helvetica, sans-serif;
+  /* background-color: #EAEAEA; */
+  background: url(./imgs/bg.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
-
+p {
+  margin-bottom: 0px;
+}
 .container {
-    width: 75%;
-    margin: 20px auto;
+  width: 75%;
+  margin: 20px auto;
 }
 
 .container h1 {
-    font-weight: 600;
-    color: white;
-    text-align: center;
-    margin-bottom: 15px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .form {
-    background-color: #fff;
-    border-radius: 6px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.1);
 }
 
 .input {
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 6px;
-    flex: 1;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 6px;
+  flex: 1;
 }
 
 .fa-solid,
 .fas {
-    font-size: 20px;
+  font-size: 20px;
 }
 
-
 .add {
-    margin-left: 10px;
-    height: 45px !important;
-    width: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin-left: 10px;
+  height: 45px !important;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add i {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .tasks {
-    background-color: #fff;
-    margin-top: 20px;
-    border-radius: 6px;
-    padding: 20px;
-    box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin-top: 20px;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 15px;
 }
 
 .tasks .task {
-    background-color: white;
-    padding: 10px;
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: 0.3s;
-    cursor: pointer;
-    border: 1px solid #dee2e6;
-    font-weight: 450;
-    font-size: 14px;
-}
-
-.tasks .task:not(:last-child) {
-    margin-bottom: 15px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+  cursor: pointer;
+  border: 1px solid #dee2e6;
 }
 
 .tasks .task:hover {
-    background-color: #ebeaea;
+  background-color: #ebeaea;
 }
 
 .tasks .task.done {
-    /* opacity: 0.5;
-    filter: blur(2px); */
-    background: #03ba5b85;
+  background: linear-gradient(-90deg, #4ad493, #007374);
+  color: white;
+  opacity: 0.6;
 }
 
-
-
-.tasks .task span {
-    font-weight: bold;
-    font-size: 12px;
-    background-color: #dc3545;
+.tasks .task {
+  .textOfTask {
+    width: 60%;
+    font-weight: 450;
+    font-size: 14px;
+    word-wrap: break-word;
+  }
+  span {
     color: white;
-    padding: 6px 15px;
     border-radius: 4px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 30px;
+    height: 30px;
+    i {
+      font-size: 15px;
+    }
+  }
+  .del {
+    background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+  }
+
+  .edit {
+    background-image: linear-gradient(to top left, #ffb003, #ffcb03);
+  }
+
+  .done {
+    background-image: linear-gradient(to top left, #39b385, #9be15d);
+  }
 }
 
 .DeleetAll {
-    margin-top: 10px;
-    width: 100%;
-    border: 2px solid;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin-top: 10px;
+  width: 100%;
+  border: 2px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .DeleetAll:hover {
-    border-color: #fff;
-    background: #dc3545;
+  border-color: #fff;
+  background: #dc3545;
 }
 
-@media (max-width:900px) {
-    .container {
-        width: 80%;
-    }
+@media (max-width: 900px) {
+  .container {
+    width: 80%;
+  }
 }
 
-@media (max-width:500px) {
-    .container {
-        width: 99%;
-    }
+@media (max-width: 500px) {
+  .container {
+    width: 99%;
+  }
 
-    .form .input {
-        font-size: small;
-    }
+  .form .input {
+    font-size: small;
+  }
 }
