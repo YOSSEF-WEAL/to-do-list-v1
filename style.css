@@ -41,7 +41,7 @@ p {
   padding: 10px;
   background-color: #fff;
   border-radius: 6px;
-  flex: 1;
+  font-weight: 600;
 }
 
 .fa-solid,
